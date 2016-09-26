@@ -1,0 +1,142 @@
+/*  GLOBAL SETTINGS
+================================ */
+
+*, *:before, *:after { box-sizing: border-box; }
+
+body {
+    font-size: 1em;
+    line-height: 1.7em;
+}
+
+div {
+    width: 100%;
+}
+
+img, svg {
+    width: 100%;
+    height: auto;
+    align-self: center;
+}
+
+
+/*  THE GRID
+================================== */
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100vw;
+    max-width: 100%;
+    text-align: center;
+    padding: 50px 0;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    text-align: initial;
+    padding: 0;
+    margin: 0;
+}
+
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+ }
+
+.col-1  { width: 8.333%; }
+.col-2  { width: 16.66%; }
+.col-3  { width: 25%; }
+.col-4  { width: 33.33%; }
+.col-5  { width: 41.66%; }
+.col-6  { width: 50%; }
+.col-7  { width: 58.33%; }
+.col-8  { width: 66.66%; }
+.col-9  { width: 75%; }
+.col-10 { width: 83.33%; }
+.col-11 { width: 91.66%; }
+.col-12 { width: 100%; }
+
+[class*='col'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: initial;
+    padding: 25px;
+    margin: 0;
+}
+
+
+/*  TYPE STYLING
+================================== */
+
+p {
+    margin-top: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    line-height: 1.3em;
+    margin: 0 0 .4em 0;
+}
+
+h1 { font-size: 3.8em; }
+h2 { font-size: 3.3em; }
+h3 { font-size: 2.8em; }
+h4 { font-size: 2.3em; }
+h5 { font-size: 1.8em; }
+h6 { font-size: 1.3em; }
+
+
+/*  EXTRA FEATURES
+================================== */
+
+.notification {
+    visibility: hidden;
+    height: 48px;
+    width: 100%;
+    color: rgba(0,0,0,.5);
+    font-weight: bold;
+    line-height: 48px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 8px;
+    padding: 0;
+    margin: auto 10px 0 10px;
+    transition: opacity .5s;
+}
+
+
+/*  POSITIONING
+================================== */
+
+/* LEFT HORIZONTAL alignment */
+.row.left {
+    justify-content: flex-start;
+}
+.left {
+    text-align: left;
+}
+
+/* CENTER HORIZONTAL alignment */
+.row.center {
+    justify-content: center;
+}
+.center {
+    text-align: center;
+}
+
+/* RIGHT HORIZONTAL alignment */
+.row.right {
+    justify-content: flex-end;
+}
+.right {
+    text-align: right;
+}

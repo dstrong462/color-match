@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+	<title></title>
+
+    <meta name="description" content="">
+
+    <meta name="author" content="Daniel Strong">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/ramshackle-2.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<div id="landscape">
+    <h6>Sorry, but this application works best in portrait mode!</h6>
+</div>
+
+<div class="container">
+<!-- BEGIN MAIN CONTAINER -->
+
+<!-- LEVEL PAGE -->
+    <h5 id="level">Level 1</h5>
+    <div class="row outline">
+        <div class="target-box">
+            <span></span>
+        </div>
+        <div class="adjustment-box">
+            <span></span>
+        </div>
+    </div>
+    <div class="row button-row">
+        <div id="red-more" class="col-3 btn"></div>
+        <div id="green-more" class="col-3 btn"></div>
+        <div id="blue-more" class="col-3 btn"></div>
+    </div>
+    <div class="row button-row">
+        <div id="red-less" class="col-3 btn"></div>
+        <div id="green-less" class="col-3 btn"></div>
+        <div id="blue-less" class="col-3 btn"></div>
+    </div>
+    <div id="submit-color" class="row">
+        <span class="submit">submit</span>
+    </div>
+
+<!-- LEVEL SUMMARY PAGE -->
+
+    <section id="summary">
+        <div class="level-complete">
+            <span class="title">Level 1 Complete!</span>
+        </div>
+        <div class="row">
+            <div class="col-6 center">
+                <h6>Target:</h6>
+                <div id="previous-target-color"></div>
+                <span></span>
+            </div>
+            <div class="col-6 center">
+                <h6>Yours:</h6>
+                <div id="previous-adjusted-color"></div>
+                <span></span>
+            </div>
+        </div>
+        <div>
+            <h5>Level Score</h5>
+            <hr>
+        </div>
+        <div>
+            <p class="red">Red<span id="red-avg"></span></p>
+            <p class="green">Green<span id="green-avg"></span></p>
+            <p class="blue">Blue<span id="blue-avg"></span></p>
+        </div>
+        <span id="total-level-score"></span>
+        <div class="row">
+            <span class="submit">next level</span>
+        </div>
+    </section>
+
+<!-- FINAL SCORE SUMMARY PAGE -->
+
+    <section id="final-summary">
+        <div>
+            <span class="title">Final Score</span>
+            <div class="row"></div>
+            <div id="final-list" class="row"></div>
+        </div>
+        <div class="row">
+            <h1 id="final-score"></h1>
+        </div>
+        <div class="row">
+            <div class="notification error">
+                <span>Must be 20 characters or less.</span>
+            </div>
+            <input id="name-input" type="text" placeholder="Enter Your Name" onfocus="this.placeholder=''" onblur="this.placeholder='Please Enter Name'">
+            <span class="submit">submit score</span>
+        </div>
+    </section>
+
+<!-- LOCAL HIGH SCORE LIST -->
+
+    <section id="highscores">
+        <div class="level-complete">
+            <span class="title">High Scores</span>
+        </div>
+        <div id="highscore-list" class="row"></div>
+        <div class="row">
+            <span class="submit">start new game</span>
+            <span class="submit clearlist">clear list</span>
+        </div>
+    </section>
+
+<!-- END MAIN CONTAINER -->
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
