@@ -338,6 +338,7 @@ hr {
 
 #final-summary {
     padding-bottom: 25px;
+    overflow-y: auto;
     z-index: 20;
 }
 
@@ -404,6 +405,7 @@ hr {
 
 #highscores {
     padding-bottom: 25px;
+    overflow-y: auto;
     z-index: 30;
 }
 
@@ -485,10 +487,13 @@ hr {
         width: 100%;
     }
     .level-complete {
-        padding: 15px 10px;
+        padding: 25px 10px;
     }
     .title {
         font-size: 2em;
+    }
+    #summary {
+        padding-top: 0;
     }
     #summary [class*='col'] {
         font-size: .8em;
@@ -504,6 +509,9 @@ hr {
     #final-summary input {
         margin-top: 10px;
     }
+    #final-summary .submit {
+        margin-bottom: 25px;
+    }
     #total-level-score {
         font-size: 2em;
     }
@@ -517,6 +525,9 @@ hr {
     }
     #final-list .row {
         padding: 0 20px;
+    }
+    #highscores {
+        padding-top: 0;
     }
     #highscore-list .row:first-child {
         font-size: 1.4em;
