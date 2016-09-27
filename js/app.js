@@ -54,7 +54,14 @@ var titlePlay = document.getElementById('title-play');
     titlePlay.addEventListener('click', selectGameLength);
 var howTo = document.getElementById('title-howto');
     howTo.addEventListener('click', function() {
-        document.getElementById('how-to-play').style.opacity = '1';
+        // Toggle visibility on button click
+        var howToBox = document.getElementById('how-to-play');
+        if (howToBox.style.opacity === '1') {
+            howToBox.style.opacity = '0';
+        }
+        else {
+            howToBox.style.opacity = '1';
+        }
     });
 // DOM elements for referencing
 var levelText = document.getElementById('level');
@@ -124,7 +131,13 @@ function selectGameLength() {
     var long = document.getElementById('game-long');
         long.removeEventListener('click', setGameLength);
         long.addEventListener('click', setGameLength);
-        long.parentNode.style.opacity = '1';
+        // Toggle visibility on button click
+        if (long.parentNode.style.opacity === '1') {
+            long.parentNode.style.opacity = '0';
+        }
+        else {
+            long.parentNode.style.opacity = '1';
+        }
 }
 
 // Set game length based on input
@@ -234,7 +247,7 @@ function displaySummary() {
     document.getElementById('blue-avg').innerHTML = ': &nbsp;' + blueScore.toLocaleString();
     var levelScore = redScore + greenScore + blueScore;
     finalScore += levelScore;
-    document.getElementById('total-level-score').innerHTML = '+' + levelScore.toLocaleString() + ' points';
+    document.getElementById('total-level-score').innerHTML = '+ ' + levelScore.toLocaleString() + ' points';
     // Add button to proceed to next level or display final score
     var next = document.querySelector('#summary .submit');
         if (level >= totalLevels) {
