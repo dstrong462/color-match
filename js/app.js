@@ -1,5 +1,5 @@
 // Declare game option variables
-var totalLevels = 1;
+var totalLevels = 5;
 // This prevents generating a color that is too light or dark to match
 var minimumColorValue = 50;
 var maximumColorValue = 700;
@@ -28,12 +28,14 @@ else {
         highscoreList = JSON.parse(retrievedList);
 }
 
-
-function startNewGame() {
+function resetGame() {
     // Reset all page positions
+    document.getElementById('title-screen').style.left = '0';
     document.getElementById('summary').style.left = '100%';
     document.getElementById('final-summary').style.left = '100%';
     document.getElementById('highscores').style.left = '100%';
+    document.getElementById('game-length').style.opacity = '0';
+    document.getElementById('how-to-play').style.opacity = '0';
     // Reset game variables
     adjustedRed = 0;
     adjustedGreen = 0;
@@ -45,13 +47,18 @@ function startNewGame() {
     level = 0;
     delete playerData;
     playerData = { targetRed: [], adjustedRed: [], targetGreen: [], adjustedGreen: [], targetBlue: [], adjustedBlue: [], levelScores: [] };
-    generateRGB();
 }
 
-
-// Declare DOM elements to be utilized
+// Event handlers for title screen
+var titlePlay = document.getElementById('title-play');
+    titlePlay.addEventListener('click', selectGameLength);
+var howTo = document.getElementById('title-howto');
+    howTo.addEventListener('click', function() {
+        document.getElementById('how-to-play').style.opacity = '1';
+    });
+// DOM elements for referencing
 var levelText = document.getElementById('level');
-var targetBox = document.querySelector('.target-box span');
+var targetBox = document.querySelector('.target-box');
 var adjustmentBox = document.querySelector('.adjustment-box span');
 var submit = document.querySelector('#submit-color span');
     submit.addEventListener('click', displaySummary);
@@ -66,6 +73,7 @@ var colorStripeContainer = document.querySelector('#final-summary .row');
 // Add event listeners for all 6 color buttons
 var buttons = document.querySelectorAll('.btn');
 for (var i = 0; i < buttons.length; i++) {
+    // Add event listeners for click events
     buttons[i].addEventListener('mousedown', function() {
         var currentButton = this.id;
         adjustColor(currentButton);
@@ -83,11 +91,53 @@ for (var i = 0; i < buttons.length; i++) {
             }, 30);
         }, 350);
     });
+    // Add event listeners for touch events
+    buttons[i].addEventListener('touchstart', function(e) {
+        var currentButton = this.id;
+        e.preventDefault();
+        adjustColor(currentButton);
+        
+        // Allow holding a button to increase the value
+        timeout = window.setTimeout(function () {
+            interval = window.setInterval(function() {
+                adjustColor(currentButton);
+            }, 30);
+        }, 350);
+    });
     // Stop value from increasing on mouseup
     buttons[i].addEventListener('mouseup', function() {
         window.clearTimeout(timeout);
         window.clearInterval(interval);
     });
+    // Stop value from increasing on touchend
+    buttons[i].addEventListener('touchend', function() {
+        window.clearTimeout(timeout);
+        window.clearInterval(interval);
+    });
+}
+
+// Allow user to select a long or short game
+function selectGameLength() {
+    var short = document.getElementById('game-short');
+        short.removeEventListener('click', setGameLength);
+        short.addEventListener('click', setGameLength);
+    var long = document.getElementById('game-long');
+        long.removeEventListener('click', setGameLength);
+        long.addEventListener('click', setGameLength);
+        long.parentNode.style.opacity = '1';
+}
+
+// Set game length based on input
+function setGameLength() {
+    if (this.id === 'game-short') {
+        totalLevels = 5;
+    }
+    else if (this.id === 'game-long') {
+        totalLevels = 10;
+    }
+    generateRGB();
+    var titleScreen = document.getElementById('title-screen');
+        titleScreen.style.left = '100%';
 }
 
 // Generate random RGB values for current level
@@ -99,8 +149,7 @@ function generateRGB() {
     if (red + green + blue >= minimumColorValue && red + green + blue <= maximumColorValue) {
         rgb = '';
         rgb += 'rgb(' + red + ',' + green + ',' + blue + ')';
-        targetBox.parentElement.style.backgroundColor = rgb;
-        targetBox.innerHTML = rgb;
+        targetBox.style.backgroundColor = rgb;
         adjustmentBox.innerHTML = adjustedRGB;
         submit.style.color = checkIfLightOrDark(red,green,blue);
         submit.style.backgroundColor = rgb;
@@ -141,7 +190,6 @@ function adjustColor(btn) {
         adjustedBlue--;
     }
     else {
-        console.log('adjustColor Not Working');
     }
 
     generateAdjustedRGB(); 
@@ -304,7 +352,6 @@ function addToHighscores() {
         highscoreList.sort( function(a,b) { return b.score - a.score; } );
         // Trim high score list if too long
         if (highscoreList.length > 8) {
-            console.log('it should be trimming');
             highscoreList.splice((highscoreList.length), 1);
         }
         // Add high score list to local storage
@@ -338,7 +385,7 @@ function displayHighscores() {
     list.innerHTML = entry;
     // Add button to proceed to new game
     var button = document.querySelector('#highscores .submit');
-        button.addEventListener('click', startNewGame);
+        button.addEventListener('click', resetGame);
     var clearHighscoreList = document.querySelector('.clearlist');
         clearHighscoreList.addEventListener('click', clearHighscores);
 }
@@ -351,18 +398,9 @@ function clearHighscores() {
         delete retrievedList;
         highscoreList = [];
     }
-    else {
-
-    }
 }
 
 // Return a random value from 0 to 255
 function random() {
     return Math.floor(Math.random() * 256);
 }
-
-
-
-
-
-generateRGB();

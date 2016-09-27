@@ -8,7 +8,7 @@ body {
     background-color: #424242;
 }
 
-.container {
+.main-container {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -23,6 +23,25 @@ body {
     text-align: center;
     padding: 25px;
     margin: 0 auto;
+}
+
+.container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 100%;
+    text-align: center;
+    background-color: #424242;
+    padding: 25px 0 0 0;
+    margin: 0;
+    transition: .75s ease-in-out;
 }
 
 #landscape {
@@ -45,9 +64,92 @@ body {
     z-index: 1000;
 }
 
+/* TITLE SCREEN
+===================================== */
+
+#title-screen {
+    left: 0;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    background-color: #424242;
+    padding: 25px;
+    transition: left .75s ease-in-out;
+    z-index: 100;
+}
+
+#logo {
+    width: 50%;
+    fill: #5cb860;
+    outline: 2px solid #ececee;
+    padding: 20px;
+    margin-bottom: 25px;
+    animation: logo-color 6s infinite;
+}
+
+@keyframes logo-color {
+    33% { fill: #387bc9; }
+    66% { fill: #e15258; }
+}
+
+#title-screen .submit {
+    width: 25%;
+}
+
+#game-length {
+    opacity: 0;
+    transition: .5s;
+}
+
+#game-short,
+#game-long {
+    flex-shrink: 1;
+    width: auto;
+    cursor: default;
+    font-size: 1em;
+    text-transform: capitalize;
+    background-color: rgba(0,0,0,.1);
+    border: 2px solid rgba(255,255,255,.1);
+    border-radius: 8px;
+    padding: 5px 12px;
+    margin: 20px 10px;
+}
+
+#game-short:hover,
+#game-long:hover {
+    background-color: rgba(0,0,0,.25);
+    border: 2px solid rgba(255,255,255,.25);
+}
+
+#how-to-play {
+    width: 100%;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    background-color: #387bc9;
+    opacity: 0;
+    padding: 25px;
+    transition: opacity .5s;
+}
+
 
 /* REUSABLE ITEMS
 ===================================== */
+
+a {
+    font-size: .9em;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    transition: .25s;
+    padding: 4px 8px;
+}
+
+a:hover {
+    color: #5cb860;
+}
 
 hr {
     width: 30%;
@@ -191,22 +293,6 @@ hr {
 ===================================== */
 
 #summary {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 100%;
-    text-align: center;
-    background-color: #424242;
-    padding: 25px 0 0 0;
-    margin: 0;
-    transition: .75s ease-in-out;
     z-index: 10;
 }
 
@@ -244,22 +330,7 @@ hr {
 ===================================== */
 
 #final-summary {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 100%;
-    text-align: center;
-    background-color: #424242;
-    padding: 25px 0;
-    margin: 0;
-    transition: .75s ease-in-out;
+    padding-bottom: 25px;
     z-index: 20;
 }
 
@@ -325,22 +396,7 @@ hr {
 ===================================== */
 
 #highscores {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    align-items: center;
-    justify-content: space-between;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 100%;
-    text-align: center;
-    background-color: #424242;
-    padding: 25px 0;
-    margin: 0;
-    transition: .75s ease-in-out;
+    padding-bottom: 25px;
     z-index: 30;
 }
 
@@ -394,11 +450,35 @@ hr {
 }
 
 @media screen and (max-width: 480px) {
-    .container {
-        padding-top: 10px;
+    .main-container {
+        padding-top: 0;
+    }
+    #logo {
+        width: 70%;
+    }
+    #how-to-play {
+        font-size: .8em;
+        line-height: 1.4;
+        padding: 10px;
+    }
+    #title-screen .submit {
+        width: 40%;
+        padding-left: 0;
+        padding-right: 0;
     }
     #level {
-        font-size: 1.5em;
+        position: fixed;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.2em;
+        text-shadow: 2px 2px 0 rgba(0,0,0,.35);
+        padding: 0;
+    }
+    .outline {
+        width: 100vw;
+        border-radius: 0;
+        border:none;
     }
     .submit {
         width: 100%;
